@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<platform xmlns="http://ns.adobe.com/air/extension/20.0">
+
+	<packagedDependencies>
+		<packagedDependency>amplitude.jar</packagedDependency> 
+	</packagedDependencies>
+
+</platform>

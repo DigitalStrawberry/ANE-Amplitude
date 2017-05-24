@@ -1,0 +1,10 @@
+actionscript/.idea
+Main.iml
+project.properties
+build/temp
+.DS_STORE
+UserInterfaceState.xcuserstate
+android/bin
+android/gen
+ANE-Amplitude-Test/bin
+ios/ANEAmplitude/ANEAmplitude.xcodeproj/xcuserdata/*.xcuserdatad
