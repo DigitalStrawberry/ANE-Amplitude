@@ -4,7 +4,7 @@ Adobe Air Native Extension for [Amplitude](https://amplitude.com/) analytics on 
 
 ## Version
 
-This extension uses the Amplitude SDK version 3.9.0 for iOS and SDK version 2.10.0 for Android.
+This extension uses the Amplitude SDK version 3.14.1 for iOS and SDK version 2.14.1 for Android.
 
 ## Requirements
 
