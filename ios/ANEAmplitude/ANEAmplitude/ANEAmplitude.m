@@ -206,6 +206,11 @@ DEFINE_ANE_FUNCTION(logRevenue)
 DEFINE_ANE_FUNCTION(getDeviceId)
 {
     NSString *deviceId = [[Amplitude instance] getDeviceId];
+    if(deviceId == nil)
+    {
+        return nil;
+    }
+    
     FREObject returnObject = nil;
     
     FRENewObjectFromString(deviceId, &returnObject);
