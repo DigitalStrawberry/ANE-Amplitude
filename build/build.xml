@@ -44,7 +44,6 @@
 
         <exec executable="xcodebuild" failonerror="true" dir="../ios/${name}/">
             <arg line="-project ${name}.xcodeproj"/>
-            <arg line="-arch i386"/>
             <arg line="-sdk ${ios.simulatorsdkversion}"/>
             <arg line="-alltargets"/>
             <arg line="-configuration Release"/>
