@@ -1,9 +1,9 @@
-<extension xmlns="http://ns.adobe.com/air/extension/20.0">
-    <id>com.digitalstrawberry.nativeExtensions.ANEAmplitude</id>
-    <versionNumber>1.1.1</versionNumber>
+<extension xmlns="http://ns.adobe.com/air/extension/20.0"> 
+    <id>com.digitalstrawberry.nativeExtensions.ANEAmplitude</id> 
+    <versionNumber>1.1.2</versionNumber> 
     <platforms>
-
-	<platform name="iPhone-ARM">
+        
+	<platform name="iPhone-ARM"> 
             <applicationDeployment> 
                 <nativeLibrary>libANEAmplitude.a</nativeLibrary> 
                 <initializer>ANEAmplitudeInitializer</initializer>
