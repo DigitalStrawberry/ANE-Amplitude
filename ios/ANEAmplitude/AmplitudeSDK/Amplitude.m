@@ -1675,7 +1675,7 @@ static NSString *const SEQUENCE_NUMBER = @"sequence_number";
 
 - (id)unarchive:(NSString*)path {
     // unarchive using new NSKeyedUnarchiver method from iOS 9.0 that doesn't throw exceptions
-    if (@available(iOS 9.0, *)) {
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_8_x_Max) {
         NSFileManager *fileManager = [NSFileManager defaultManager];
         if ([fileManager fileExistsAtPath:path]) {
             NSData *inputData = [fileManager contentsAtPath:path];
