@@ -183,21 +183,23 @@ DEFINE_ANE_FUNCTION(logRevenue)
     NSInteger ns_quanity = (NSInteger) quantity;
     NSNumber *ns_price = [NSNumber numberWithDouble:price];
     
-    // Revenue with receipt data
+    AMPRevenue *revenue = [AMPRevenue revenue];
+    [revenue setProductIdentifier:productIdentifier];
+    [revenue setQuantity:ns_quanity];
+    [revenue setPrice:ns_price];
+    
+    // We have receipt data
     if(argc == 4)
     {
         NSString *receipt = nil;
         if(FREGetObjectAsString(argv[3], &receipt) == FRE_OK)
         {
-            NSData* data=[receipt dataUsingEncoding:NSUTF8StringEncoding];
-            [[Amplitude instance] logRevenue:productIdentifier quantity:ns_quanity price:ns_price receipt:data];
+            NSData* data = [receipt dataUsingEncoding:NSUTF8StringEncoding];
+            [revenue setReceipt:data];
         }
     }
-    // Revenue without receipt data
-    else
-    {
-        [[Amplitude instance] logRevenue:productIdentifier quantity:ns_quanity price:ns_price];
-    }
+    
+    [[Amplitude instance] logRevenueV2:revenue];
     
     return NULL;
 }

@@ -28,23 +28,22 @@ import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 import com.amplitude.api.Amplitude;
+import com.amplitude.api.Revenue;
 
 public class LogRevenue implements FREFunction
 {
 	@Override
 	public FREObject call( FREContext context, FREObject[] args )
 	{
-		String productIdentifier = "";
-		int quantity = 0;
-		double price = 0;
-		String receipt = "";
-		String receiptSignature = "";
+		String receipt = null;
+		String receiptSignature = null;
+		Revenue revenue = new Revenue();
 		
 		try
 		{
-			productIdentifier = args[0].getAsString();
-			quantity = args[1].getAsInt();
-			price = args[2].getAsDouble();
+			String productIdentifier = args[0].getAsString();
+			int quantity = args[1].getAsInt();
+			double price = args[2].getAsDouble();
 			
 			if(args.length > 3)
 			{
@@ -54,21 +53,22 @@ public class LogRevenue implements FREFunction
 			{
 				receiptSignature = args[4].getAsString();
 			}
+
+			revenue.setProductId(productIdentifier);
+			revenue.setQuantity(quantity);
+			revenue.setPrice(price);
+			if(receipt != null && !receipt.isEmpty())
+			{
+				revenue.setReceipt(receipt, receiptSignature);
+			}
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 			return null;
 		}
-		
-		if(receipt == "")
-		{
-			Amplitude.getInstance().logRevenue(productIdentifier, quantity, price);
-		}
-		else
-		{
-			Amplitude.getInstance().logRevenue(productIdentifier, quantity, price, receipt, receiptSignature);
-		}
+
+		Amplitude.getInstance().logRevenueV2(revenue);
 		
 		return null;
 	}
