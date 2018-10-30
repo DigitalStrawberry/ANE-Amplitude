@@ -22,6 +22,8 @@
 		C31AB2CB1DB4F9BA0088CF8F /* ISPCertificatePinning.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AB2BC1DB4F9BA0088CF8F /* ISPCertificatePinning.m */; };
 		C31AB2CC1DB4F9BA0088CF8F /* ISPPinnedNSURLConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AB2BE1DB4F9BA0088CF8F /* ISPPinnedNSURLConnectionDelegate.m */; };
 		C31AB2CD1DB4F9BA0088CF8F /* ISPPinnedNSURLSessionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AB2C01DB4F9BA0088CF8F /* ISPPinnedNSURLSessionDelegate.m */; };
+		C368DF2E2188CC4000D6C9E5 /* AMPURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = C368DF2C2188CC4000D6C9E5 /* AMPURLSession.m */; };
+		C368DF2F2188CC4000D6C9E5 /* AMPTrackingOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C368DF2D2188CC4000D6C9E5 /* AMPTrackingOptions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -76,6 +78,10 @@
 		C31AB2BF1DB4F9BA0088CF8F /* ISPPinnedNSURLSessionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISPPinnedNSURLSessionDelegate.h; sourceTree = "<group>"; };
 		C31AB2C01DB4F9BA0088CF8F /* ISPPinnedNSURLSessionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISPPinnedNSURLSessionDelegate.m; sourceTree = "<group>"; };
 		C31AB2C11DB4F9BA0088CF8F /* SSLCertificatePinning-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SSLCertificatePinning-Prefix.pch"; sourceTree = "<group>"; };
+		C368DF2A2188CC4000D6C9E5 /* AMPURLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPURLSession.h; sourceTree = "<group>"; };
+		C368DF2B2188CC4000D6C9E5 /* AMPTrackingOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPTrackingOptions.h; sourceTree = "<group>"; };
+		C368DF2C2188CC4000D6C9E5 /* AMPURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPURLSession.m; sourceTree = "<group>"; };
+		C368DF2D2188CC4000D6C9E5 /* AMPTrackingOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPTrackingOptions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,10 @@
 		C31AB2A01DB4F9BA0088CF8F /* AmplitudeSDK */ = {
 			isa = PBXGroup;
 			children = (
+				C368DF2B2188CC4000D6C9E5 /* AMPTrackingOptions.h */,
+				C368DF2D2188CC4000D6C9E5 /* AMPTrackingOptions.m */,
+				C368DF2A2188CC4000D6C9E5 /* AMPURLSession.h */,
+				C368DF2C2188CC4000D6C9E5 /* AMPURLSession.m */,
 				C31AB2A11DB4F9BA0088CF8F /* AMPARCMacros.h */,
 				C31AB2A21DB4F9BA0088CF8F /* AMPConstants.h */,
 				C31AB2A31DB4F9BA0088CF8F /* AMPConstants.m */,
@@ -225,6 +235,7 @@
 			files = (
 				C31AB2CB1DB4F9BA0088CF8F /* ISPCertificatePinning.m in Sources */,
 				C31AB2C81DB4F9BA0088CF8F /* AMPRevenue.m in Sources */,
+				C368DF2E2188CC4000D6C9E5 /* AMPURLSession.m in Sources */,
 				0A740C0A1A237AD30020B517 /* ANEAmplitude.m in Sources */,
 				C31AB2CC1DB4F9BA0088CF8F /* ISPPinnedNSURLConnectionDelegate.m in Sources */,
 				C31AB2C41DB4F9BA0088CF8F /* AMPDeviceInfo.m in Sources */,
@@ -234,6 +245,7 @@
 				C31AB2CA1DB4F9BA0088CF8F /* AMPUtils.m in Sources */,
 				C31AB2C91DB4F9BA0088CF8F /* AMPURLConnection.m in Sources */,
 				C31AB2C31DB4F9BA0088CF8F /* AMPDatabaseHelper.m in Sources */,
+				C368DF2F2188CC4000D6C9E5 /* AMPTrackingOptions.m in Sources */,
 				C31AB2CD1DB4F9BA0088CF8F /* ISPPinnedNSURLSessionDelegate.m in Sources */,
 				0A740C211A237BBB0020B517 /* FRETypeUtils.m in Sources */,
 				C31AB2C21DB4F9BA0088CF8F /* AMPConstants.m in Sources */,
