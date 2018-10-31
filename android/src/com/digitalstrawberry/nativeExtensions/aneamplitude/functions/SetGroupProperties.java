@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Digital Strawberry LLC
+ * Copyright (c) 2018 Digital Strawberry LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,39 +22,53 @@
  * SOFTWARE.
  */
 
-package com.digitalstrawberry.nativeExtensions.aneamplitude;
+package com.digitalstrawberry.nativeExtensions.aneamplitude.functions;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.adobe.fre.FREArray;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
+import com.adobe.fre.FREObject;
+import com.amplitude.api.Amplitude;
+import com.amplitude.api.Identify;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import com.digitalstrawberry.nativeExtensions.aneamplitude.functions.*;
+import java.util.Iterator;
 
-public class ANEAmplitudeContext extends FREContext
+public class SetGroupProperties implements FREFunction
 {
 	@Override
-	public void dispose()
+	public FREObject call(FREContext context, FREObject[] args)
 	{
-	}
+		try
+		{
+			String groupType = args[0].getAsString();
+			String groupName = args[1].getAsString();
+			FREArray array = (FREArray) args[2];
+			JSONObject params = AmplitudeUtils.GetJSONFromArray(array);
 
-	@Override
-	public Map<String, FREFunction> getFunctions()
-	{
-		Map<String, FREFunction> functionMap = new HashMap<String, FREFunction>();
-		functionMap.put("initialize", new Initialize());
-		functionMap.put("setUserId", new SetUserId());
-		functionMap.put("logEvent", new LogEvent());
-		functionMap.put("setUserProperties", new SetUserProperties());
-		functionMap.put("setGroup", new SetGroup());
-		functionMap.put("setGroupProperties", new SetGroupProperties());
-		functionMap.put("logRevenue", new LogRevenue());
-		functionMap.put("getDeviceId", new GetDeviceId());
-		functionMap.put("useAdvertisingIdForDeviceId", new UseAdvertisingIdForDeviceId());
-		functionMap.put("startSession", new StartSession());
-		functionMap.put("endSession", new EndSession());
-		return functionMap;
-	}
+			JSONObject sanitized = Amplitude.getInstance().truncate(params);
+			if(sanitized.length() != 0) {
+				Identify identify = new Identify();
+				Iterator keys = sanitized.keys();
 
+				while(keys.hasNext()) {
+					String key = (String)keys.next();
+
+					try {
+						identify.set(key, sanitized.getString(key));
+					} catch (JSONException ignored) { }
+				}
+
+				Amplitude.getInstance().groupIdentify(groupType, groupName, identify);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		
+		return null;
+	}
 }

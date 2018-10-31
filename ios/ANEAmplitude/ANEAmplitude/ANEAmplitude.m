@@ -73,6 +73,42 @@ void ANEAmplitude_FREGetDictionaryFromArray(FREObject array, NSMutableDictionary
 }
 
 
+void ANEAmplitude_FREGetNSArrayFromArray(FREObject array, NSMutableArray *result)
+{
+    uint32_t arrayLength = 0;
+    uint32_t totalElements = 0;
+    
+    if(FREGetArrayLength(array, &arrayLength) != FRE_OK)
+    {
+        return;
+    }
+    totalElements = arrayLength;
+    
+    if(totalElements == 0)
+    {
+        return;
+    }
+    
+    uint32_t i;
+    NSString *value = nil;
+    FREObject element = nil;
+    
+    for(i = 0; i < totalElements; i++)
+    {
+        if(FREGetArrayElementAt(array, i, &element) != FRE_OK)
+        {
+            continue;
+        }
+        
+        if(FREGetObjectAsString(element, &value) != FRE_OK)
+        {
+            continue;
+        }
+        
+        [result addObject:value];
+    }
+}
+
 
 DEFINE_ANE_FUNCTION(initialize)
 {
@@ -167,6 +203,66 @@ DEFINE_ANE_FUNCTION(setUserProperties)
 }
 
 
+DEFINE_ANE_FUNCTION(setGroupProperties)
+{
+    NSString *groupType = nil;
+    NSString *groupName = nil;
+    if(FREGetObjectAsString(argv[0], &groupType) != FRE_OK ||
+       FREGetObjectAsString(argv[1], &groupName) != FRE_OK)
+    {
+        return NULL;
+    }
+    
+    FREObject paramArray = argv[2];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    ANEAmplitude_FREGetDictionaryFromArray(paramArray, parameters);
+    
+    AMPIdentify* identify = [AMPIdentify identify];
+    for (NSString* key in parameters) {
+        id value = parameters[key];
+        [identify set:key value:value];
+    }
+    
+    [[Amplitude instance] groupIdentifyWithGroupType:groupType groupName:groupName groupIdentify:identify];
+    
+    return NULL;
+}
+
+
+DEFINE_ANE_FUNCTION(setGroup)
+{
+    FREObjectType freGroupNameType = FRE_TYPE_NULL;
+    NSString *groupType = nil;
+    if(FREGetObjectAsString(argv[0], &groupType) != FRE_OK ||
+       FREGetObjectType(argv[1], &freGroupNameType) != FRE_OK)
+    {
+        return NULL;
+    }
+    
+    // The group name is a string
+    if(freGroupNameType == FRE_TYPE_STRING)
+    {
+        NSString* groupName = nil;
+        if(FREGetObjectAsString(argv[1], &groupName) == FRE_OK && groupName != nil)
+        {
+            [[Amplitude instance] setGroup:groupType groupName:groupName];
+        }
+    }
+    // The group name is an array
+    else if(freGroupNameType == FRE_TYPE_ARRAY)
+    {
+        NSMutableArray *groupNames = [NSMutableArray array];
+        ANEAmplitude_FREGetNSArrayFromArray(argv[1], groupNames);
+        if(groupNames.count > 0)
+        {
+            [[Amplitude instance] setGroup:groupType groupName:groupNames];
+        }
+    }
+    
+    return NULL;
+}
+
+
 DEFINE_ANE_FUNCTION(logRevenue)
 {
     NSString *productIdentifier = nil;
@@ -238,6 +334,8 @@ void ANEAmplitudeContextInitializer(void* extData, const uint8_t* ctxType, FRECo
         MAP_FUNCTION(setUserId, NULL),
         MAP_FUNCTION(logEvent, NULL),
         MAP_FUNCTION(setUserProperties, NULL),
+        MAP_FUNCTION(setGroupProperties, NULL),
+        MAP_FUNCTION(setGroup, NULL),
         MAP_FUNCTION(logRevenue, NULL),
         MAP_FUNCTION(getDeviceId, NULL),
         MAP_FUNCTION(useAdvertisingIdForDeviceId, NULL)

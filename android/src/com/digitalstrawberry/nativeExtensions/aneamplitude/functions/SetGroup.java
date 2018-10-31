@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Digital Strawberry LLC
+ * Copyright (c) 2018 Digital Strawberry LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,60 +24,40 @@
 
 package com.digitalstrawberry.nativeExtensions.aneamplitude.functions;
 
-import com.adobe.fre.FREArray;
-import org.json.JSONArray;
+import com.adobe.fre.*;
+import com.amplitude.api.Amplitude;
+import com.amplitude.api.Identify;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-public class AmplitudeUtils
+import java.util.Iterator;
+
+public class SetGroup implements FREFunction
 {
-	
-	public static JSONObject GetJSONFromArray(FREArray array)
+	@Override
+	public FREObject call(FREContext context, FREObject[] args)
 	{
-		JSONObject json = new JSONObject();
-		
 		try
 		{
-			int totalElements = (int) (array.getLength() / 2);
-			String key, value;
-			
-			for(int i = 0; i < totalElements; i++)
-			{
-				key = array.getObjectAt(i * 2).getAsString();
-				value = array.getObjectAt((i * 2) + 1).getAsString();
-				
-				json.putOpt(key, value);
-			}
+			String groupType = args[0].getAsString();
+			Object groupName = getGroupName(args[1]);
+
+			Amplitude.getInstance().setGroup(groupType, groupName);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			return json;
+			return null;
 		}
 		
-		return json;	
+		return null;
 	}
 
-	public static JSONArray GetJSONArrayFromArray(FREArray array)
-	{
-		JSONArray json = new JSONArray();
-
-		try
+	private Object getGroupName(FREObject freGroupName) throws FREInvalidObjectException, FRETypeMismatchException, FREWrongThreadException {
+		if(freGroupName instanceof FREArray)
 		{
-			int totalElements = (int) array.getLength();
-
-			for(int i = 0; i < totalElements; i++)
-			{
-				String value = array.getObjectAt(i).getAsString();
-				json.put(value);
-			}
+			return AmplitudeUtils.GetJSONArrayFromArray((FREArray) freGroupName);
 		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return json;
-		}
-
-		return json;
+		return freGroupName.getAsString();
 	}
-	
 }
