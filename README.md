@@ -4,7 +4,7 @@ Adobe Air Native Extension for [Amplitude](https://amplitude.com/) analytics on 
 
 ## Version
 
-This extension uses the Amplitude SDK version `4.2.1` for iOS and SDK version `2.18.1` for Android.
+This extension uses the Amplitude SDK version `4.4.0` for iOS and SDK version `2.20.0` for Android.
 
 ## Requirements
 
@@ -15,10 +15,6 @@ When packaging your app for iOS, you need to use AIR 28+ or provide a path to iO
 ```
 -platformsdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.2.sdk
 ```
-
-## Binary Files
-
-You can find the final compiled ANE binary along with the swc file in the bin folder.
 
 ## Using the Extension
 
@@ -110,6 +106,24 @@ You can set properties for the specific user:
 
 ```as3
 Amplitude.setUserProperties({param1: "hello", param2, "world"});
+```
+
+### Set Group
+
+You can assign user to a group. The second `groupName` parameter accepts either a string or an array of strings:
+
+```as3
+Amplitude.setGroup("organizationId", "15");
+
+Amplitude.setGroup("sport", ["tennis", "baseball"]);
+```
+
+### Set Group Properties
+
+Just like setting user properties, you can also set group properties:
+
+```as3
+Amplitude.setGroupProperties("company", "Amplitude", {members: 80});
 ```
 
 ### Log Revenue
