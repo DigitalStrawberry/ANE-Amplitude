@@ -24,6 +24,7 @@
 
 package com.digitalstrawberry.nativeExtensions.amplitude
 {
+
 	import flash.desktop.NativeApplication;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -121,6 +122,60 @@ package com.digitalstrawberry.nativeExtensions.amplitude
 			}
 			
 			mExtContext.call("setUserProperties", paramArray);
+		}
+
+
+		public static function setGroupProperties(groupType:String, groupName:String, parameters:Object):void
+		{
+			if(mExtContext == null)
+			{
+				return;
+			}
+
+			if(groupType == null)
+			{
+				throw new ArgumentError("Parameter groupType cannot be null.");
+			}
+
+			if(groupName == null)
+			{
+				throw new ArgumentError("Parameter groupName cannot be null.");
+			}
+
+			var paramArray:Array = new Array();
+			for(var key:String in parameters)
+			{
+				paramArray.push(key);
+				paramArray.push(String(parameters[key]));
+			}
+
+			mExtContext.call("setGroupProperties", groupType, groupName, paramArray);
+		}
+
+
+		public static function setGroup(groupType:String, groupName:*):void
+		{
+			if(mExtContext == null)
+			{
+				return;
+			}
+
+			if(groupType == null)
+			{
+				throw new ArgumentError("Parameter groupType cannot be null.");
+			}
+
+			if(groupName == null)
+			{
+				throw new ArgumentError("Parameter groupName cannot be null.");
+			}
+
+			if(!(groupName is String) && !(groupName is Array))
+			{
+				throw new ArgumentError("Parameter groupName must be either a String or Array of strings.");
+			}
+
+			mExtContext.call("setGroup", groupType, groupName);
 		}
 		
 		
