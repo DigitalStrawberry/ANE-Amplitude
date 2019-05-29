@@ -55,6 +55,12 @@ public class Initialize implements FREFunction
 			return null;
         }
 
+        // Session tracking must be enabled before initialization
+        if(autoTrackSession)
+        {
+            Amplitude.getInstance().trackSessionEvents(true);
+        }
+
         if(userId == null || userId.equals(""))
 		{
 			Amplitude.getInstance().initialize(context.getActivity().getApplicationContext(), apiKey);
@@ -63,11 +69,6 @@ public class Initialize implements FREFunction
 		{
 			Amplitude.getInstance().initialize(context.getActivity().getApplicationContext(), apiKey, userId);
 		}
-        // Session tracking must be enabled after initialization
-        if(autoTrackSession)
-        {
-            Amplitude.getInstance().trackSessionEvents(true);
-        }
 
 		
 		return null;
