@@ -16,11 +16,6 @@
 
         <exec executable="xcodebuild" failonerror="true" dir="../ios/${name}/">
             <arg line="-project ${name}.xcodeproj"/>
-            <arg line="-alltargets clean"/>
-        </exec>
-
-        <exec executable="xcodebuild" failonerror="true" dir="../ios/${name}/">
-            <arg line="-project ${name}.xcodeproj"/>
             <arg line="-sdk ${ios.sdkversion}"/>
             <arg line="-alltargets"/>
             <arg line="-configuration Release"/>
@@ -36,11 +31,6 @@
     <!-- iOS Simulator -->
     <target name="ios-simulator" description="Build iOS Simulator Library">
         <mkdir dir="../temp/ios-simulator/build/"/>
-
-        <exec executable="xcodebuild" failonerror="true" dir="../ios/${name}/">
-            <arg line="-project ${name}.xcodeproj"/>
-            <arg line="-alltargets clean"/>
-        </exec>
 
         <exec executable="xcodebuild" failonerror="true" dir="../ios/${name}/">
             <arg line="-project ${name}.xcodeproj"/>
