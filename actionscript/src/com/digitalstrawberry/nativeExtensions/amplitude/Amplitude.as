@@ -212,6 +212,17 @@ package com.digitalstrawberry.nativeExtensions.amplitude
 		}
 		
 		
+		public static function getSessionId():String
+		{
+			if(mExtContext == null)
+			{
+				return '';
+			}
+			
+			return mExtContext.call("getSessionId") as String;
+		}
+		
+		
 		public static function useAdvertisingIdForDeviceId():void
 		{
 			init();

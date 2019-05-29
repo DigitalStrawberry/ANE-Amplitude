@@ -317,6 +317,20 @@ DEFINE_ANE_FUNCTION(getDeviceId)
 }
 
 
+DEFINE_ANE_FUNCTION(getSessionId)
+{
+    long long deviceId = [[Amplitude instance] getSessionId];
+    
+    FREObject returnObject = nil;
+    
+    NSString* deviceIdString = [[NSNumber numberWithLongLong:deviceId] stringValue];
+    
+    FRENewObjectFromString(deviceIdString, &returnObject);
+    
+    return returnObject;
+}
+
+
 DEFINE_ANE_FUNCTION(useAdvertisingIdForDeviceId)
 {
     [[Amplitude instance] useAdvertisingIdForDeviceId];
@@ -338,6 +352,7 @@ void ANEAmplitudeContextInitializer(void* extData, const uint8_t* ctxType, FRECo
         MAP_FUNCTION(setGroup, NULL),
         MAP_FUNCTION(logRevenue, NULL),
         MAP_FUNCTION(getDeviceId, NULL),
+        MAP_FUNCTION(getSessionId, NULL),
         MAP_FUNCTION(useAdvertisingIdForDeviceId, NULL)
     };
     

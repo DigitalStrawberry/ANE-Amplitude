@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Digital Strawberry LLC
+ * Copyright (c) 2019 Digital Strawberry LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,40 +22,30 @@
  * SOFTWARE.
  */
 
-package com.digitalstrawberry.nativeExtensions.aneamplitude;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.digitalstrawberry.nativeExtensions.aneamplitude.functions;
 
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
+import com.adobe.fre.FREObject;
+import com.amplitude.api.Amplitude;
 
-import com.digitalstrawberry.nativeExtensions.aneamplitude.functions.*;
-
-public class ANEAmplitudeContext extends FREContext
+public class GetSessionId implements FREFunction
 {
 	@Override
-	public void dispose()
+	public FREObject call( FREContext context, FREObject[] args )
 	{
+		long deviceId = Amplitude.getInstance().getSessionId();
+		FREObject returnObj = null;
+		
+		try
+		{
+			returnObj = FREObject.newObject(String.valueOf(deviceId));
+		}
+		catch(Exception e)
+		{
+		
+		}
+		
+		return returnObj;
 	}
-
-	@Override
-	public Map<String, FREFunction> getFunctions()
-	{
-		Map<String, FREFunction> functionMap = new HashMap<String, FREFunction>();
-		functionMap.put("initialize", new Initialize());
-		functionMap.put("setUserId", new SetUserId());
-		functionMap.put("logEvent", new LogEvent());
-		functionMap.put("setUserProperties", new SetUserProperties());
-		functionMap.put("setGroup", new SetGroup());
-		functionMap.put("setGroupProperties", new SetGroupProperties());
-		functionMap.put("logRevenue", new LogRevenue());
-		functionMap.put("getDeviceId", new GetDeviceId());
-		functionMap.put("getSessionId", new GetSessionId());
-		functionMap.put("useAdvertisingIdForDeviceId", new UseAdvertisingIdForDeviceId());
-		functionMap.put("startSession", new StartSession());
-		functionMap.put("endSession", new EndSession());
-		return functionMap;
-	}
-
 }
