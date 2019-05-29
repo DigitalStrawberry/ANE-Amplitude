@@ -39,10 +39,12 @@ package
 			feedback.width = 400;
 			feedback.height = 260;
 			feedback.x = 10;
-			feedback.y = 170;
+			feedback.y = 210;
 			feedback.multiline = true;
 			feedback.wordWrap = true;
 			addChild(feedback);
+
+			log("Running Amplitude ANE v" + Amplitude.VERSION);
 			
 			createButtons();
 		}
@@ -107,6 +109,32 @@ package
 			tf.y = 90;
 			tf.addEventListener(MouseEvent.MOUSE_DOWN, logRevenue);
 			addChild(tf);
+
+
+			// Row
+			tf = createButton("Set User Group");
+			tf.x = 10;
+			tf.y = 130;
+			tf.addEventListener( MouseEvent.MOUSE_DOWN, setGroup);
+			addChild(tf);
+
+			tf = createButton("Set User Groups");
+			tf.x = 170;
+			tf.y = 130;
+			tf.addEventListener( MouseEvent.MOUSE_DOWN, setGroups);
+			addChild(tf);
+
+			tf = createButton("Set Group Prop");
+			tf.x = 330;
+			tf.y = 130;
+			tf.addEventListener(MouseEvent.MOUSE_DOWN, setGroupProperties);
+			addChild(tf);
+
+			tf = createButton("Get Session Id");
+			tf.x = 10;
+			tf.y = 170;
+			tf.addEventListener(MouseEvent.MOUSE_DOWN, getSessionId);
+			addChild(tf);
 			
 		}
 		
@@ -170,6 +198,11 @@ package
 		{
 			log("Amplitude device id = " + Amplitude.getDeviceId());
 		}
+
+		private function getSessionId(event:MouseEvent):void
+		{
+			log("Amplitude session id = " + Amplitude.getSessionId());
+		}
 		
 		private function setUserId(event:MouseEvent):void
 		{
@@ -212,6 +245,24 @@ package
 		{
 			log("Amplitude.logRevenue('com.example.productname', 1, 2.99)");
 			Amplitude.logRevenue("com.example.productname", 1, 2.99);
+		}
+
+		private function setGroup(event:MouseEvent):void
+		{
+			log("Amplitude.setGroup('organizationId', '1337')");
+			Amplitude.setGroup("organizationId", "1337");
+		}
+
+		private function setGroups(event:MouseEvent):void
+		{
+			log("Amplitude.setGroup('sport', ['tennis', 'baseball'])");
+			Amplitude.setGroup("sport", ["tennis", "baseball"]);
+		}
+
+		private function setGroupProperties(event:MouseEvent):void
+		{
+			log("Amplitude.setGroupProperties('company', 'Company LLC', { members: 13 })");
+			Amplitude.setGroupProperties("company", "Company LLC", { members: 13 });
 		}
 		
 	}
