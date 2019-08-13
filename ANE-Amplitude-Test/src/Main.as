@@ -244,7 +244,7 @@ package
 		private function logRevenue(event:MouseEvent):void
 		{
 			log("Amplitude.logRevenue('com.example.productname', 1, 2.99)");
-			Amplitude.logRevenue("com.example.productname", 1, 2.99);
+			Amplitude.logRevenue("com.example.productname", 1, 2.99, null, null, "income", {prop1: "value1", prop2: "value2"});
 		}
 
 		private function setGroup(event:MouseEvent):void
