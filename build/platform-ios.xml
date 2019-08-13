@@ -1,5 +1,5 @@
 <platform xmlns="http://ns.adobe.com/air/extension/20.0">
-    <sdkVersion>6.0</sdkVersion>
+    <sdkVersion>8.0</sdkVersion>
     <linkerOptions>
         <option>-lsqlite3.0</option>
     </linkerOptions> 
