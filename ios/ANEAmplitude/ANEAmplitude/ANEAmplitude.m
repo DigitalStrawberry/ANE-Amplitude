@@ -285,13 +285,41 @@ DEFINE_ANE_FUNCTION(logRevenue)
     [revenue setPrice:ns_price];
     
     // We have receipt data
-    if(argc == 4)
+    if(argv[3] != nil)
     {
         NSString *receipt = nil;
         if(FREGetObjectAsString(argv[3], &receipt) == FRE_OK)
         {
             NSData* data = [receipt dataUsingEncoding:NSUTF8StringEncoding];
             [revenue setReceipt:data];
+        }
+    }
+    
+    // argv[4] receipt signature (Android only)
+    
+    // Revenue type
+    if(argv[5] != nil)
+    {
+        NSString *revenueType = nil;
+        if(FREGetObjectAsString(argv[5], &revenueType) == FRE_OK)
+        {
+            [revenue setRevenueType:revenueType];
+        }
+    }
+    
+    // Event properties
+    if(argv[6] != nil)
+    {
+        NSString *eventProperties = nil;
+        if(FREGetObjectAsString(argv[6], &eventProperties) == FRE_OK)
+        {
+            NSData* jsonData = [eventProperties dataUsingEncoding:NSUTF8StringEncoding];
+            NSError* error = nil;
+            id json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            if(error == nil && [json isKindOfClass:[NSDictionary class]])
+            {
+                [revenue setEventProperties:json];
+            }
         }
     }
     

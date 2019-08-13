@@ -24,36 +24,28 @@
 
 package com.digitalstrawberry.nativeExtensions.aneamplitude.functions;
 
-import com.adobe.fre.FREContext;
-import com.adobe.fre.FREFunction;
-import com.adobe.fre.FREObject;
+import com.adobe.fre.*;
 import com.amplitude.api.Amplitude;
 import com.amplitude.api.Revenue;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LogRevenue implements FREFunction
 {
 	@Override
 	public FREObject call( FREContext context, FREObject[] args )
 	{
-		String receipt = null;
-		String receiptSignature = null;
-		Revenue revenue = new Revenue();
-		
 		try
 		{
 			String productIdentifier = args[0].getAsString();
 			int quantity = args[1].getAsInt();
 			double price = args[2].getAsDouble();
-			
-			if(args.length > 3)
-			{
-				receipt = args[3].getAsString();
-			}
-			if(args.length > 4)
-			{
-				receiptSignature = args[4].getAsString();
-			}
+            String receipt = getStringArg(args[3]);
+            String receiptSignature = getStringArg(args[4]);
+            String revenueType = getStringArg(args[5]);
+            JSONObject eventProperties = getJsonArg(args[6]);
 
+            Revenue revenue = new Revenue();
 			revenue.setProductId(productIdentifier);
 			revenue.setQuantity(quantity);
 			revenue.setPrice(price);
@@ -61,15 +53,42 @@ public class LogRevenue implements FREFunction
 			{
 				revenue.setReceipt(receipt, receiptSignature);
 			}
+            if(revenueType != null)
+            {
+                revenue.setRevenueType(revenueType);
+            }
+            if(eventProperties != null)
+            {
+                revenue.setEventProperties(eventProperties);
+            }
+
+            Amplitude.getInstance().logRevenueV2(revenue);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 			return null;
 		}
-
-		Amplitude.getInstance().logRevenueV2(revenue);
 		
 		return null;
 	}
+
+    private String getStringArg( FREObject object ) throws FREInvalidObjectException, FRETypeMismatchException, FREWrongThreadException
+    {
+        if( object == null )
+        {
+            return null;
+        }
+        return object.getAsString();
+    }
+
+    private JSONObject getJsonArg(FREObject object ) throws FREInvalidObjectException, FRETypeMismatchException, FREWrongThreadException, JSONException
+    {
+        if( object == null )
+        {
+            return null;
+        }
+        String jsonString = object.getAsString();
+        return new JSONObject(jsonString);
+    }
 }

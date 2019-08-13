@@ -179,25 +179,15 @@ package com.digitalstrawberry.nativeExtensions.amplitude
 		}
 		
 		
-		public static function logRevenue(productIdentifier:String, quantity:int, price:Number, receipt:String = null, receiptSignature:String = null):void
+		public static function logRevenue(productIdentifier:String, quantity:int, price:Number, receipt:String = null, receiptSignature:String = null, revenueType:String = null,  eventProperties:Object = null):void
 		{
 			if(mExtContext == null)
 			{
 				return;
 			}
-			
-			if(receipt == null)
-			{
-				mExtContext.call("logRevenue", productIdentifier, quantity, price);
-			}
-			else if(receiptSignature == null || isiOS)
-			{
-				mExtContext.call("logRevenue", productIdentifier, quantity, price, receipt);
-			}
-			else
-			{
-				mExtContext.call("logRevenue", productIdentifier, quantity, price, receipt, receiptSignature);
-			}
+
+			var eventPropertiesJSON:String = (eventProperties != null) ? JSON.stringify(eventProperties) : null;
+			mExtContext.call("logRevenue", productIdentifier, quantity, price, receipt, receiptSignature, revenueType, eventPropertiesJSON);
 		}
 		
 		
