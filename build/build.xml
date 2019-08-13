@@ -19,6 +19,7 @@
             <arg line="-sdk ${ios.sdkversion}"/>
             <arg line="-alltargets"/>
             <arg line="-configuration Release"/>
+            <arg line="-quiet"/>
             <arg line="SYMROOT=../../temp/ios/build/"/>
         </exec>
 
@@ -37,6 +38,7 @@
             <arg line="-sdk ${ios.simulatorsdkversion}"/>
             <arg line="-alltargets"/>
             <arg line="-configuration Release"/>
+            <arg line="-quiet"/>
             <arg line="SYMROOT=../../temp/ios-simulator/build/"/>
         </exec>
 
