@@ -4,22 +4,30 @@
     <platforms>
         
 	<platform name="iPhone-ARM"> 
-            <applicationDeployment> 
-                <nativeLibrary>libANEAmplitude.a</nativeLibrary> 
-                <initializer>ANEAmplitudeInitializer</initializer>
-		<finalizer>ANEAmplitudeFinalizer</finalizer>
-            </applicationDeployment> 
-        </platform>
+		<applicationDeployment> 
+			<nativeLibrary>libANEAmplitude.a</nativeLibrary> 
+			<initializer>ANEAmplitudeInitializer</initializer>
+			<finalizer>ANEAmplitudeFinalizer</finalizer>
+		</applicationDeployment> 
+	</platform>
 	
 	<platform name="iPhone-x86"> 
-            <applicationDeployment> 
-                <nativeLibrary>libANEAmplitude.a</nativeLibrary> 
-                <initializer>ANEAmplitudeInitializer</initializer>
-		<finalizer>ANEAmplitudeFinalizer</finalizer>
-            </applicationDeployment> 
-        </platform>
+		<applicationDeployment> 
+			<nativeLibrary>libANEAmplitude.a</nativeLibrary> 
+			<initializer>ANEAmplitudeInitializer</initializer>
+			<finalizer>ANEAmplitudeFinalizer</finalizer>
+		</applicationDeployment> 
+	</platform>
 	
 	<platform name="Android-ARM">
+	    <applicationDeployment>
+		<nativeLibrary>libANEAmplitude.jar</nativeLibrary>
+		<initializer>com.digitalstrawberry.nativeExtensions.aneamplitude.ANEAmplitude</initializer>
+		<finalizer>com.digitalstrawberry.nativeExtensions.aneamplitude.ANEAmplitude</finalizer>
+	    </applicationDeployment>
+	</platform>
+	
+	<platform name="Android-ARM64">
 	    <applicationDeployment>
 		<nativeLibrary>libANEAmplitude.jar</nativeLibrary>
 		<initializer>com.digitalstrawberry.nativeExtensions.aneamplitude.ANEAmplitude</initializer>
