@@ -46,7 +46,6 @@
 		0A740C201A237BBB0020B517 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
 		0A740C231A237E1B0020B517 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0A740C251A237E8C0020B517 /* ANEAmplitude-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ANEAmplitude-Prefix.pch"; sourceTree = "<group>"; };
-		C31AB2A11DB4F9BA0088CF8F /* AMPARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPARCMacros.h; sourceTree = "<group>"; };
 		C31AB2A21DB4F9BA0088CF8F /* AMPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPConstants.h; sourceTree = "<group>"; };
 		C31AB2A31DB4F9BA0088CF8F /* AMPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPConstants.m; sourceTree = "<group>"; };
 		C31AB2A41DB4F9BA0088CF8F /* AMPDatabaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPDatabaseHelper.h; sourceTree = "<group>"; };
@@ -133,7 +132,6 @@
 				C368DF2D2188CC4000D6C9E5 /* AMPTrackingOptions.m */,
 				C368DF2A2188CC4000D6C9E5 /* AMPURLSession.h */,
 				C368DF2C2188CC4000D6C9E5 /* AMPURLSession.m */,
-				C31AB2A11DB4F9BA0088CF8F /* AMPARCMacros.h */,
 				C31AB2A21DB4F9BA0088CF8F /* AMPConstants.h */,
 				C31AB2A31DB4F9BA0088CF8F /* AMPConstants.m */,
 				C31AB2A41DB4F9BA0088CF8F /* AMPDatabaseHelper.h */,
