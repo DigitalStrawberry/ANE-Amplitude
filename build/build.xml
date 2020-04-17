@@ -58,6 +58,8 @@
                 <pathelement location="${android.sdk}/platforms/android-${android.version}/android.jar"/>
                 <pathelement location="${flex.sdk}/lib/android/FlashRuntimeExtensions.jar"/>
                 <pathelement location="../android/libs/amplitude.jar" />
+                <pathelement location="../android/libs/okhttp-3.10.0.jar" />
+                <pathelement location="../android/libs/okio-1.14.0.jar" />
             </classpath>
         </javac>
         
@@ -65,6 +67,8 @@
         <jar basedir="../android/temp/classes" destfile="../temp/android/lib${name}.jar"/>
         
         <copy tofile="../temp/android/amplitude.jar" file="../android/libs/amplitude.jar" overwrite="true" />
+        <copy tofile="../temp/android/okhttp-3.10.0.jar" file="../android/libs/okhttp-3.10.0.jar" overwrite="true" />
+        <copy tofile="../temp/android/okio-1.14.0.jar" file="../android/libs/okio-1.14.0.jar" overwrite="true" />
         
         <delete dir="../android/temp"/>
     </target>

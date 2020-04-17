@@ -3,6 +3,8 @@
 
 	<packagedDependencies>
 		<packagedDependency>amplitude.jar</packagedDependency> 
+		<packagedDependency>okhttp-3.10.0.jar</packagedDependency> 
+		<packagedDependency>okio-1.14.0.jar</packagedDependency> 
 	</packagedDependencies>
 
 </platform>
