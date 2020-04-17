@@ -33,7 +33,7 @@ package com.digitalstrawberry.nativeExtensions.amplitude
 
 	public class Amplitude extends EventDispatcher
 	{
-		public static const VERSION:String = "1.2.3";
+		public static const VERSION:String = "1.3.0";
 
 		private static var mExtContext:ExtensionContext = null;
 		
