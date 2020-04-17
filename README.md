@@ -4,7 +4,7 @@ Adobe Air Native Extension for [Amplitude](https://amplitude.com/) analytics on 
 
 ## Version
 
-This extension uses the Amplitude SDK version `4.4.0` for iOS and SDK version `2.20.0` for Android.
+This extension uses the Amplitude SDK version `5.1.0` for iOS and SDK version `2.25.1` for Android.
 
 ## Requirements
 
@@ -28,16 +28,17 @@ Download the ANE from the [bin](bin/) directory or from the [releases](../../rel
 </extensions>
 ```
 
-When using the extension on the Android platform you will need to setup Google Play Services in order to extract the Google Advertising ID for install attribution. Add the following extensions (from [this repository](https://github.com/marpies/android-dependency-anes/releases/)) to the app descriptor:
+On iOS, you may need to add the following ANE to be able to build your IPA:
 
-```xml
-<extensions>
-    <extensionID>com.marpies.ane.androidsupport</extensionID>
-    <extensionID>com.marpies.ane.googleplayservices.ads</extensionID>
-    <extensionID>com.marpies.ane.googleplayservices.base</extensionID>
-    <extensionID>com.marpies.ane.googleplayservices.basement</extensionID>
-</extensions>
-```
+* `com.distriqt.Core` (https://github.com/distriqt/ANE-Core)
+
+If you are targeting Android, add the following dependency extensions:
+
+* `com.distriqt.androidsupport.V4` (https://github.com/distriqt/ANE-AndroidSupport)
+* `com.distriqt.playservices.Ads` (https://github.com/distriqt/ANE-GooglePlayServices)
+* `com.distriqt.playservices.Base` (https://github.com/distriqt/ANE-GooglePlayServices)
+
+> Credits to [Distriqt](https://github.com/distriqt) for providing these extensions.
 
 You will also need to add the following permissions to the Android manifest:
 
