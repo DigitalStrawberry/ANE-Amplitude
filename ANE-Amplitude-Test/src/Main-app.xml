@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/32.0">
+<application xmlns="http://ns.adobe.com/air/application/33.1">
 
 	<id>com.marpies.demo.amplitude</id>
 	<filename>ANE-Amplitude-Test</filename>
@@ -48,9 +48,11 @@
     </iPhone>
 <extensions>
 	<extensionID>com.digitalstrawberry.nativeExtensions.ANEAmplitude</extensionID>
-	<extensionID>com.marpies.ane.googleplayservices.ads</extensionID>
-	<extensionID>com.marpies.ane.googleplayservices.base</extensionID>
-	<extensionID>com.marpies.ane.googleplayservices.basement</extensionID>
-	<extensionID>com.marpies.ane.androidsupport</extensionID>
+
+	<extensionID>androidx.core</extensionID>
+	<extensionID>com.distriqt.Core</extensionID>
+	<extensionID>com.distriqt.playservices.AdsIdentifier</extensionID>
+	<extensionID>com.distriqt.playservices.Base</extensionID>
+	<extensionID>com.distriqt.square.okhttp3</extensionID>
 </extensions>
 </application>
