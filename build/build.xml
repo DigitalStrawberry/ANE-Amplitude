@@ -2,10 +2,11 @@
 
 <!-- Thanks to https://github.com/freshplanet/ANE-ImagePicker -->
 
-<project name="Air Native Extension Build Scripts" default="all">
+<project name="anebuild" default="all">
 
     <!-- Config -->
     <property file="build.config"/>
+	<dirname property="build.basedir" file="${ant.file.android}" />
 
     <!-- All -->
     <target name="all" depends="ios,ios-simulator,android,swc,package" description="Full build of extension"/>
@@ -58,18 +59,25 @@
                 <pathelement location="${android.sdk}/platforms/android-${android.version}/android.jar"/>
                 <pathelement location="${flex.sdk}/lib/android/FlashRuntimeExtensions.jar"/>
                 <pathelement location="../android/libs/amplitude.jar" />
-                <pathelement location="../android/libs/okhttp-3.10.0.jar" />
-                <pathelement location="../android/libs/okio-1.14.0.jar" />
             </classpath>
         </javac>
         
         <mkdir dir="../temp/android/"/>
         <jar basedir="../android/temp/classes" destfile="../temp/android/lib${name}.jar"/>
         
-        <copy tofile="../temp/android/amplitude.jar" file="../android/libs/amplitude.jar" overwrite="true" />
-        <copy tofile="../temp/android/okhttp-3.10.0.jar" file="../android/libs/okhttp-3.10.0.jar" overwrite="true" />
-        <copy tofile="../temp/android/okio-1.14.0.jar" file="../android/libs/okio-1.14.0.jar" overwrite="true" />
-        
+        <exec executable="${android.jetifier}">
+            <arg value="-i" />
+            <arg value="../android/libs/amplitude.jar" />
+            <arg value="-o" />
+            <arg value="../temp/android/amplitude.jar" />
+        </exec>
+        <exec executable="${android.jetifier}">
+            <arg value="-i" />
+            <arg value="../temp/android/lib${name}.jar" />
+            <arg value="-o" />
+            <arg value="../temp/android/lib${name}.jar" />
+        </exec>
+
         <delete dir="../android/temp"/>
     </target>
 
@@ -117,6 +125,7 @@
             <arg line="-platform Android-ARM -platformoptions ../build/platform-android.xml -C android/ ."/>
             <arg line="-platform Android-ARM64 -platformoptions ../build/platform-android.xml -C android/ ."/>
             <arg line="-platform Android-x86 -platformoptions ../build/platform-android.xml -C android/ ." />
+            <arg line="-platform Android-x64 -platformoptions ../build/platform-android.xml -C android/ ." />
             <arg line="-platform default -C default/ ."/>
         </exec>
 

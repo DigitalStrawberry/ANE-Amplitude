@@ -43,6 +43,14 @@
 	    </applicationDeployment>
 	</platform>
 	
+	<platform name="Android-x64">
+	    <applicationDeployment>
+		<nativeLibrary>libANEAmplitude.jar</nativeLibrary>
+		<initializer>com.digitalstrawberry.nativeExtensions.aneamplitude.ANEAmplitude</initializer>
+		<finalizer>com.digitalstrawberry.nativeExtensions.aneamplitude.ANEAmplitude</finalizer>
+	    </applicationDeployment>
+	</platform>
+
 	<platform name="default"> 
 	    <applicationDeployment/> 
 	</platform> 

@@ -34,9 +34,10 @@ On iOS, you may need to add the following ANE to be able to build your IPA:
 
 If you are targeting Android, add the following dependency extensions:
 
-* `com.distriqt.androidsupport.V4` (https://github.com/distriqt/ANE-AndroidSupport)
-* `com.distriqt.playservices.Ads` (https://github.com/distriqt/ANE-GooglePlayServices)
+* `androidx.core` (https://github.com/distriqt/ANE-AndroidSupport)
+* `com.distriqt.playservices.AdsIdentifier` (https://github.com/distriqt/ANE-GooglePlayServices)
 * `com.distriqt.playservices.Base` (https://github.com/distriqt/ANE-GooglePlayServices)
+* `com.distriqt.square.okhttp3` (https://github.com/distriqt/ANE-SquareLibs)
 
 > Credits to [Distriqt](https://github.com/distriqt) for providing these extensions.
 
