@@ -8,3 +8,4 @@ android/bin
 android/gen
 ANE-Amplitude-Test/bin
 ios/ANEAmplitude/ANEAmplitude.xcodeproj/xcuserdata/*.xcuserdatad
+build/build.config

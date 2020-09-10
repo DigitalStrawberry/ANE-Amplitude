@@ -175,7 +175,7 @@ You can learn more about the inner workings of the Amplitude system using the fo
 
 ## Compiling from Source
 
-You can compile the Air Native Extension from source by updating the build/build.config file to match your development enviroment. Then run the ant command in the build folder to build the entire project.
+You can compile the Air Native Extension from source by copying the `build/build.config.template` file to `build/build.config` updating it to match your development enviroment. Then run the `ant` command in the `build` folder to build the entire project.
 
 ## Special Thanks
 

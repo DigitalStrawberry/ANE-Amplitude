@@ -1,16 +1,16 @@
 name = ANEAmplitude
 
-flex.sdk = /Users/marchbold/work/sdks/air/current
+flex.sdk = /path/to/air_sdk
 bin.ext = 
 
 ios.sdkversion = iphoneos
 ios.simulatorsdkversion = iphonesimulator
 
 # Location of the android sdk
-android.sdk = /Users/marchbold/work/sdks/android/android-sdk-macosx
+android.sdk = /path/to/android_sdk
 
 # Android SDK version
 android.version = 28
 
 # Jetifier 
-android.jetifier=/Users/marchbold/bin/jetifier/bin/jetifier-standalone
+android.jetifier=/path/to/jetifier-standalone
