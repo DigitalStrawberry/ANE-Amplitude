@@ -178,6 +178,22 @@ package com.digitalstrawberry.nativeExtensions.amplitude
 			mExtContext.call("setGroup", groupType, groupName);
 		}
 		
+
+		public static function setServerUrl(url:String):void
+		{
+			if(mExtContext == null)
+			{
+				return;
+			}
+
+			if(url == null)
+			{
+				throw new ArgumentError("Parameter url cannot be null.");
+			}
+
+			mExtContext.call("setServerUrl", url);
+		}
+		
 		
 		public static function logRevenue(productIdentifier:String, quantity:int, price:Number, receipt:String = null, receiptSignature:String = null, revenueType:String = null,  eventProperties:Object = null):void
 		{
