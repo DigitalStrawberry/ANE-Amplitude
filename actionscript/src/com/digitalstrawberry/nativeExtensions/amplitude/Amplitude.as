@@ -33,7 +33,7 @@ package com.digitalstrawberry.nativeExtensions.amplitude
 
 	public class Amplitude extends EventDispatcher
 	{
-		public static const VERSION:String = "1.3.0";
+		public static const VERSION:String = "1.4.0";
 
 		private static var mExtContext:ExtensionContext = null;
 		
@@ -176,6 +176,22 @@ package com.digitalstrawberry.nativeExtensions.amplitude
 			}
 
 			mExtContext.call("setGroup", groupType, groupName);
+		}
+		
+
+		public static function setServerUrl(url:String):void
+		{
+			if(mExtContext == null)
+			{
+				return;
+			}
+
+			if(url == null)
+			{
+				throw new ArgumentError("Parameter url cannot be null.");
+			}
+
+			mExtContext.call("setServerUrl", url);
 		}
 		
 		

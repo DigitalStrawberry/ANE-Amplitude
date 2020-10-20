@@ -229,6 +229,20 @@ DEFINE_ANE_FUNCTION(setGroupProperties)
 }
 
 
+DEFINE_ANE_FUNCTION(setServerUrl)
+{
+    NSString *url = nil;
+    if(FREGetObjectAsString(argv[0], &url) != FRE_OK)
+    {
+        return NULL;
+    }
+        
+    [[Amplitude instance] setServerUrl: url];
+    
+    return NULL;
+}
+
+
 DEFINE_ANE_FUNCTION(setGroup)
 {
     FREObjectType freGroupNameType = FRE_TYPE_NULL;
@@ -378,6 +392,7 @@ void ANEAmplitudeContextInitializer(void* extData, const uint8_t* ctxType, FRECo
         MAP_FUNCTION(setUserProperties, NULL),
         MAP_FUNCTION(setGroupProperties, NULL),
         MAP_FUNCTION(setGroup, NULL),
+        MAP_FUNCTION(setServerUrl, NULL),
         MAP_FUNCTION(logRevenue, NULL),
         MAP_FUNCTION(getDeviceId, NULL),
         MAP_FUNCTION(getSessionId, NULL),

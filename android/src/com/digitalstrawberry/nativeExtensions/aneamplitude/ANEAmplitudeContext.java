@@ -48,6 +48,7 @@ public class ANEAmplitudeContext extends FREContext
 		functionMap.put("logEvent", new LogEvent());
 		functionMap.put("setUserProperties", new SetUserProperties());
 		functionMap.put("setGroup", new SetGroup());
+		functionMap.put("setServerUrl", new SetServerUrl());
 		functionMap.put("setGroupProperties", new SetGroupProperties());
 		functionMap.put("logRevenue", new LogRevenue());
 		functionMap.put("getDeviceId", new GetDeviceId());

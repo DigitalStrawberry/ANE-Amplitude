@@ -10,4 +10,7 @@ ios.simulatorsdkversion = iphonesimulator
 android.sdk = /path/to/android_sdk
 
 # Android SDK version
-android.version = 8
+android.version = 28
+
+# Jetifier 
+android.jetifier=/path/to/jetifier-standalone
